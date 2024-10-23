@@ -575,7 +575,29 @@ void mpLib_80058AA0(void)
     mpLib_804D64B0 = 0;
 }
 
-/// #mpLib_80058ACC
+static HSD_Chan mpLib_803BF540[8]; /* extra bytes: 0x20; unable to generate
+                                      initializer: non-zero padding */
+
+void mpLib_80058ACC(GXColor* color)
+{
+    HSD_TevDesc desc;
+
+    HSD_StateInitTev();
+    desc.flags = 0;
+    desc.stage = HSD_StateAssignTev();
+    desc.coord = 0xFF;
+    desc.map = 0xFF;
+    desc.color = 4;
+    desc.u.tevop.tevmode = 4;
+    HSD_SetupTevStage(&desc);
+    HSD_SetupPEMode(1U, NULL);
+    HSD_SetTevRegAll();
+    HSD_StateSetNumTevStages();
+    HSD_StateSetNumTexGens();
+    HSD_StateSetNumChans(1);
+    mpLib_803BF540->mat_color = *color;
+    HSD_SetupChannel(mpLib_803BF540);
+}
 
 /// #mpLib_80058B5C
 

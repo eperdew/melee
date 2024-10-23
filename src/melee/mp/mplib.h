@@ -49,7 +49,8 @@
                                 float, float, float);
 /* 0524DC */ bool mpLib_800524DC(Vec3*, int, Vec3*, Vec3*, int, int, float x,
                                  float y, float z, float);
-/* 052508 */ UNK_RET mpLib_80052508(UNK_PARAMS);
+/* 052508 */ void mpLib_80052508(Vec3*, s32*, s32*, Vec3*, s32, s32, f32, f32,
+                                 f32, f32);
 /* 052534 */ UNK_RET mpLib_80052534(UNK_PARAMS);
 /* 052700 */ s32 mpLib_80052700(int idx);
 /* 0528CC */ UNK_RET mpLib_800528CC(UNK_PARAMS);

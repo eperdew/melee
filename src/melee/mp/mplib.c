@@ -53,8 +53,6 @@ int mpLib_8004D17C(void)
 
 /// #mpLib_8004DC04
 
-/// #mpLib_8004DC90
-
 void mpLib_8004DC90(f32* x_out, f32* y_out, f32 x0, f32 y0, f32 x1, f32 y1,
                     f32 x2, f32 y2, f32 x3, f32 y3, f32 x4, f32 y4)
 {
@@ -288,7 +286,12 @@ s32 mpLib_8004EBF8(f32* out_1, f32* out_2, f32 x1, f32 y1, f32 x2, f32 x3,
 
 /// #mpLib_800524DC
 
-/// #mpLib_80052508
+void mpLib_80052508(Vec3* arg0, s32* arg1, s32* arg2, Vec3* arg3, s32 arg4,
+                    s32 arg5, f32 arg8, f32 arg9, f32 argA, f32 argB)
+{
+    mpLib_80051EC8(arg0, arg1, arg2, arg3, 0xF, arg4, arg5, arg8, arg9, argA,
+                   argB);
+}
 
 /// #mpLib_80052534
 

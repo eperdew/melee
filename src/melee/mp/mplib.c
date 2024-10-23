@@ -192,7 +192,69 @@ bool mpLib_8004E97C(double arg0, double arg1, double arg2, double arg3,
     return false;
 }
 
-/// #mpLib_8004EBF8
+s32 mpLib_8004EBF8(f32* out_1, f32* out_2, f32 x1, f32 y1, f32 x2, f32 x3,
+                   f32 y2, f32 x4, f32 y3)
+{
+    f32 v1;
+    f32 v2;
+    f64 v4;
+    f64 v3;
+    f64 temp;
+    f64 temp2;
+
+    if (x1 < x2) {
+        if (((x3 < x1) && (x4 < x1)) || ((x2 < x3) && (x2 < x4))) {
+            return 0;
+        }
+
+        if (((y2 - y1) < -0.0001) || ((y3 - y1) > 0.0001)) {
+            return 0;
+        }
+
+        v1 = x1;
+        v2 = x2;
+    } else {
+        if (((x3 < x2) && (x4 < x2)) || ((x1 < x3) && (x1 < x4))) {
+            return 0;
+        }
+
+        if (((y3 - y1) < -0.0001) || ((y2 - y1) > 0.0001)) {
+            return 0;
+        }
+
+        v1 = x2;
+        v2 = x1;
+    }
+
+    v4 = y3 - y2;
+    if (ABS(v4) < 0.0001) {
+        return 0;
+    }
+
+    temp = (x4 - x3) / (f64) v4;
+    temp2 = (y1 - y2);
+    v3 = (temp * temp2) + x3;
+
+    v4 = v3 - v1;
+    if (v4 < 0.0) {
+        if (v4 < -0.1) {
+            return 0;
+        }
+        v3 = v1;
+    }
+
+    v4 = v3 - v2;
+    if (v4 > 0.0) {
+        if (v4 > 0.1) {
+            return 0;
+        }
+        v3 = v2;
+    }
+
+    *out_1 = v3;
+    *out_2 = y1;
+    return 1;
+}
 
 /// #mpLib_8004ED5C
 

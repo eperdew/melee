@@ -23,7 +23,7 @@
 /* 04E090 */ enum_t mpLib_8004E090(int idx, Vec3*, float*, u32*, Vec3* normal);
 /* 04E398 */ bool mpLib_8004E398(int, float*, int, int, int, float);
 /* 04E684 */ UNK_RET mpLib_8004E684(UNK_PARAMS);
-/* 04EBF8 */ UNK_RET mpLib_8004EBF8(UNK_PARAMS);
+/* 04EBF8 */ s32 mpLib_8004EBF8(f32*, f32*, f32, f32, f32, f32, f32, f32, f32);
 /* 04ED5C */ UNK_RET mpLib_8004ED5C(UNK_PARAMS);
 /* 04F008 */ bool mpLib_8004F008(Vec3*, int*, int, int, int, int, int, int,
                                  float, float, float, float, float);

@@ -4,6 +4,8 @@
 
 #include "mp/types.h"
 
+#include <math.h>
+#include <dolphin/gx/GXEnum.h>
 #include <dolphin/mtx/types.h>
 #include <baselib/tev.h>
 #include <baselib/texp.h>
@@ -52,6 +54,45 @@ int mpLib_8004D17C(void)
 /// #mpLib_8004DC04
 
 /// #mpLib_8004DC90
+
+void mpLib_8004DC90(f32* x_out, f32* y_out, f32 x0, f32 y0, f32 x1, f32 y1,
+                    f32 x2, f32 y2, f32 x3, f32 y3, f32 x4, f32 y4)
+{
+    f32 dist_squared;
+    f32 pos_dist_squared;
+    f32 x_dist;
+    f32 y_dist;
+    f64 x_dist_squared;
+    f64 y_dist_squared;
+    f64 relative_dist;
+    f64 n_relative_dist;
+    f32 unused;
+    f32 unused2;
+
+    x_dist = x1 - x0;
+    y_dist = y2 - y1;
+    y_dist_squared = y_dist * y_dist;
+    x_dist_squared = x_dist * x_dist;
+    dist_squared = y_dist_squared + x_dist_squared;
+
+    if (ABS(dist_squared) > 0.0001) {
+        relative_dist = ((y2 - y1) * (y0 - y1) + (x2 - x1) * (x0 - x1)) /
+                        (f64) dist_squared;
+
+        if (relative_dist > 1.0) {
+            relative_dist = 1.0;
+        } else if (relative_dist < 0.0) {
+            relative_dist = 0.0;
+        }
+
+        n_relative_dist = 1.0 - relative_dist;
+        *x_out = relative_dist * (x4 - x2) + n_relative_dist * (x3 - x1) + x0;
+        *y_out = relative_dist * (y4 - y2) + n_relative_dist * (y3 - y1) + y0;
+    } else {
+        *x_out = x0 + (x3 - x1) + (x4 - x1);
+        *y_out = y0 + (y3 - y1) + (y4 - y1);
+    }
+}
 
 /// #mpLib_8004DD90
 
